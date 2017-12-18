@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View, Image, Text, FlatList, ScrollView } from 'react-native';
+import { View, Text, FlatList, ScrollView } from 'react-native';
 import { ElementBlock } from '../common';
 import { getAllElements } from '../../actions/GetElementsAction.js';
 
@@ -9,26 +9,25 @@ class HomePage extends Component {
   constructor() {
     super();
     this.state = {
-      startNumber:1
+      startNumber: 1
     };
   }
   componentWillMount() {
-    this.props.getAllElements(this.state.startNumber);
+    this.props.getAllElements();
   }
-  renderItem=({ item, index }) => {
-           return (<ElementBlock  ElementList={item} key={index}
-                                  onPress={() => {this.props.navigation.navigate('Detail', { idElement: item.id })
-                                  }} />)
-  }
-  _ElementsLoadMore() {
+  /*_ElementsLoadMore() {
     if (!this.onEndReachedCalledDuringMomentum) {
-      this.props.getAllElements(this.state.startNumber+10);
+      this.props.getAllElements(this.state.startNumber + 10);
       this.onEndReachedCalledDuringMomentum = true;
     }
-    this.setstate({startNumber:this.state.startNumber+10})
+    this.setstate({ startNumber: this.state.startNumber + 10 });
+  }*/
+  renderItem=({ item, index }) => {
+           return (<ElementBlock ElementList={item} key={index}
+                                  onPress={() => { this.props.navigation.navigate('Detail', { idElement: item.id })
+                                  }} />)
   }
   render() {
-    console.log("elements",this.props.ElementList)
     return (
       <View>
         <View style={styles.HeaderElementContainer}>
@@ -40,11 +39,11 @@ class HomePage extends Component {
           <FlatList
             data={this.props.ElementList}
             renderItem={this.renderItem}
-            onMomentumScrollBegin={() => { this.onEndReachedCalledDuringMomentum = false; }}
+            /*onMomentumScrollBegin={() => { this.onEndReachedCalledDuringMomentum = false; }}
             onEndReachedThreshold={0.5}
             onEndReached={({ distanceFromEnd }) => {
                    this._ElementsLoadMore();
-                }}
+                }}*/
           />
         </ScrollView>
       </View>
@@ -54,15 +53,15 @@ class HomePage extends Component {
 const styles = {
   HeaderElementContainer: {
      alignSelf: 'stretch',
-     height:60,
+     height: 60,
      flexDirection: 'row',
      backgroundColor: '#fff',
      marginTop: 10,
      borderBottomWidth: 1,
      borderBottomColor: '#000'
   },
-  TextElementContainer:{
-    flex:1,
+  TextElementContainer: {
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     borderLeftWidth:1,

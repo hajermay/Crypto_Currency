@@ -5,15 +5,15 @@ import {
     GET_ALL_ELEMENTS_FAILED,
     GET_ELEMENT_DETAIL,
     GET_ELEMENT_DETAIL_SUCCESS,
-    GET_ELEMENT_DETAIL_FAILED 
+    GET_ELEMENT_DETAIL_FAILED
 
   } from './types';
 
-  // get all elements 
-  export const getAllElements = (startNumber) => {
+  // get all elements
+  export const getAllElements = () => {
     return (dispatch) => {
       dispatch({ type: GET_ALL_ELEMENTS });
-      axios.get(`https://api.coinmarketcap.com/v1/ticker/?start=${startNumber}&limit=10`)
+      axios.get('https://api.coinmarketcap.com/v1/ticker/')
       .then(response => {
         dispatch({ type: GET_ALL_ELEMENTS_SUCCESS, payload: response.data });
       })
@@ -28,7 +28,7 @@ export const getElementDetail = (id) => {
       dispatch({ type: GET_ELEMENT_DETAIL });
       axios.get(`https://api.coinmarketcap.com/v1/ticker/${id}`)
       .then(response => {
-        console.log('response',response.data[0])
+        console.log('response', response.data[0])
         dispatch({ type: GET_ELEMENT_DETAIL_SUCCESS, payload: response.data[0] });
       })
       .catch(error => {

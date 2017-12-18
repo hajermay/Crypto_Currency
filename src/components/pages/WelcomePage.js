@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View, Image, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 //import { onSignIn, navigateInit } from '../utils';
 //import { Button, Container, Input } from '../common';
 //import {} from '../actions/authAction';
@@ -13,7 +13,7 @@ class WelcomePage extends Component {
     };
   }
   NavigateToHomePage() {
-    this.props.navigation.navigate('Home')
+    this.props.navigation.navigate('Home');
   }
   render() {
     return (
@@ -35,7 +35,7 @@ const styles = {
 
 const mapStateToProps = state => {
 	return {
-		
+
 	};
 };
 export default connect(mapStateToProps, {})(WelcomePage);
