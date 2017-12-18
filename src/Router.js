@@ -26,8 +26,7 @@ const tabNavigation = TabNavigator({
         headerTitle: 'Converter'
       })
   },
-}, {
-  //initialRouteName: 'Home',   
+}, {   
   tabBarPosition: 'bottom',
   animationEnabled: true,
   tabBarOptions: {
@@ -48,7 +47,8 @@ export const AppNavigator = StackNavigator(
       Detail: {
         screen: Detail,
         navigationOptions: () => ({
-          gesturesEnabled: false
+          gesturesEnabled: false,
+          headerTitle:'Detail'
         })
       }},
       {
